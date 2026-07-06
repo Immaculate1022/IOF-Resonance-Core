@@ -3,23 +3,165 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IOF Resonance — Infinite Optical Fabric</title>
-    <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
-    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
-    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <title>IOF Resonance — Infinite Optical Fabric v1.0 [Standalone]</title>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            background: #0a0a1a;
-            color: #c8c8d8;
-            font-family: 'Courier New', monospace;
-            overflow: hidden;
-        }
-        #root { width: 100vw; height: 100vh; }
+        @import url('https://fonts.googleapis.com/css2?family=Courier+Prime&display=swap');
+        :root { --scan: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,.06) 2px, rgba(0,0,0,.06) 4px); }
+        body { margin:0; padding:0; background:#0a0a1a; color:#00f5d4; font-family:'Courier New', monospace; overflow:hidden; height:100vh; display:flex; flex-direction:column; }
+        .header { display:flex; justify-content:space-between; align-items:center; padding:12px 20px; border-bottom:1px solid #1a1a3e; background:#080818; }
+        .panel { background:#080818; border:1px solid #1a1a3e; padding:16px; overflow-y:auto; }
+        canvas { background:#04040f; display:block; }
+        .overlay { position:fixed; inset:0; pointer-events:none; z-index:999; background-image:var(--scan); opacity:0.3; }
+        button { cursor:pointer; font-family:inherit; }
+        .gauge svg { filter: drop-shadow(0 0 4px currentColor); }
+        .spark { stroke-linecap:round; }
     </style>
 </head>
 <body>
-    <div id="root"></div>
-    <script type="text/babel" src="IOF_Resonance_Complete.jsx"></script>
+    <div class="overlay"></div>
+    
+    <!-- HEADER -->
+    <div class="header">
+        <div>
+            <div style="font-size:11px;color:#00f5d4;letter-spacing:3px;font-weight:700;">◈ IOF RESONANCE v1.0 — INFINITE OPTICAL FABRIC</div>
+            <div id="scale-name" style="font-size:9px;color:#444;margin-top:2px;">BIOLOGICAL SCALE — 5D PENTERACT • 32V • 80E • φ=1.7400</div>
+        </div>
+        <div id="scale-buttons" style="display:flex;gap:8px;"></div>
+        <div style="display:flex;gap:10px;align-items:center;">
+            <div id="status" style="font-size:10px;color:#ffd60a;">○ SIMULATION</div>
+            <button id="run-btn" onclick="toggleRun()" style="padding:6px 16px;font-size:10px;background:#00f5d418;border:1px solid #00f5d4;color:#00f5d4;border-radius:4px;">▶ RUN</button>
+            <button onclick="emergencyStop()" style="padding:6px 16px;font-size:10px;background:#ff000018;border:1px solid #ff0000;color:#ff0000;border-radius:4px;font-weight:700;">🛑 STOP</button>
+            <button onclick="resonancePulse()" style="padding:6px 16px;font-size:10px;background:#7b2fff18;border:1px solid #7b2fff;color:#7b2fff;border-radius:4px;">RESONANCE PULSE</button>
+        </div>
+    </div>
+
+    <div style="flex:1;display:flex;overflow:hidden;">
+        <!-- LEFT PANEL -->
+        <div class="panel" style="width:260px;border-right:1px solid #1a1a3e;">
+            <div id="left-content"></div>
+        </div>
+
+        <!-- CENTER CANVAS -->
+        <div style="flex:1;position:relative;background:#04040f;">
+            <canvas id="canvas" width="600" height="700" style="width:100%;height:100%;"></canvas>
+            <div style="position:absolute;bottom:20px;left:50%;transform:translateX(-50%);text-align:center;pointer-events:none;">
+                <div id="center-scale" style="font-size:10px;color:#f72585;letter-spacing:3px;opacity:0.6;"></div>
+                <div id="center-verts" style="font-size:8px;color:#444;margin-top:4px;"></div>
+            </div>
+        </div>
+
+        <!-- RIGHT PANEL -->
+        <div class="panel" style="width:260px;border-left:1px solid #1a1a3e;">
+            <div id="right-content"></div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <div style="padding:8px 20px;background:#04040f;border-top:1px solid #1a1a3e;display:flex;justify-content:space-between;font-size:8px;color:#333;">
+        <div id="footer-step">STEP: 000000 | φ = 1.740000 | 3-6-9 TOPOLOGY</div>
+        <div>MADE WITH MANUS + GREGORY SCOTT DAVIS</div>
+        <div style="display:flex;gap:8px;">
+            <button onclick="exportJSON()" style="font-size:8px;background:#00f5d408;border:1px solid #00f5d4;color:#00f5d4;padding:2px 8px;border-radius:4px;">EXPORT JSON</button>
+            <button onclick="toggleLowPower()" id="lowpower-btn" style="font-size:8px;background:#ffd60a18;border:1px solid #ffd60a;color:#ffd60a;padding:2px 8px;border-radius:4px;">LOW POWER: OFF</button>
+        </div>
+    </div>
+
+    <script>
+        const PHI = (1 + Math.sqrt(5)) / 2;
+        const PHI_NOMINAL = 1.740 * Math.PI;
+        const SCALES = { COSMIC: {name:'COSMIC',color:'#7b2fff',icon:'◈'}, ENGINEERED:{name:'ENGINEERED',color:'#00f5d4',icon:'⬡'}, BIOLOGICAL:{name:'BIOLOGICAL',color:'#f72585',icon:'⟁'}, COGNITIVE:{name:'COGNITIVE',color:'#ffd60a',icon:'⬟'} };
+        const JELLYFISH_NODES = { W:{id:'W',label:'Resonant',color:'#00f5d4',x:0.20,y:0.22,desc:'Quadrature lock'}, X:{id:'X',label:'Passive',color:'#f72585',x:0.80,y:0.22,desc:'Vπ calibration'}, Y:{id:'Y',label:'Active',color:'#ffd60a',x:0.20,y:0.72,desc:'Drift correction'}, Z:{id:'Z',label:'AutoGate',color:'#7b2fff',x:0.80,y:0.72,desc:'Bandwidth envelope'}, V:{id:'V',label:'Ganglion',color:'#ff6b35',x:0.50,y:0.50,desc:'Central coherence'} };
+        
+        const gauss = (mean, sigma) => { const u1 = Math.max(1e-10, Math.random()); const u2 = Math.random(); const z = Math.sqrt(-2 * Math.log(u1)) * Math.cos(2 * Math.PI * u2); return mean + z * sigma; };
+        const clamp = (val, min, max) => Math.max(min, Math.min(max, val));
+        const buildPenteractVertices = () => { let verts = []; for (let i = 0; i < 32; i++) { const v = [(i&1)?1:-1,(i&2)?1:-1,(i&4)?1:-1,(i&8)?1:-1,(i&16)?1:-1]; verts.push(v); } return verts; };
+        const buildPenteractEdges = (verts) => { let edges = []; for (let i = 0; i < verts.length; i++) for (let j = i + 1; j < verts.length; j++) { let diff = 0; for (let d = 0; d < 5; d++) if (verts[i][d] !== verts[j][d]) diff++; if (diff === 1) edges.push([i, j]); } return edges; };
+        const rotate5D = (v, angles) => { let x = [...v]; const planes = [[0,1],[0,2],[0,3],[0,4],[1,2],[1,3],[1,4],[2,3],[2,4],[3,4]]; planes.forEach(([a,b],idx)=>{ const theta=angles[idx]||0; const ca=Math.cos(theta),sa=Math.sin(theta); const na=ca*x[a]-sa*x[b], nb=sa*x[a]+ca*x[b]; x[a]=na; x[b]=nb; }); return x; };
+        const project5Dto2D = (v5, params) => { const w4=2.5, s4=w4/(w4-v5[4]), v4=[v5[0]*s4,v5[1]*s4,v5[2]*s4,v5[3]*s4]; const w3=2.5, s3=w3/(w3-v4[3]), v3=[v4[0]*s3,v4[1]*s3,v4[2]*s3]; const w2=2.5, s2=w2/(w2-v3[2]); let x2=v3[0]*s2, y2=v3[1]*s2; const mobius=params.mobiusPhase||0; const theta=Math.atan2(y2,x2); const radius=Math.sqrt(x2*x2+y2*y2); const twisted=theta + mobius*0.3*Math.sin(radius*PHI); return [radius*Math.cos(twisted), radius*Math.sin(twisted)]; };
+
+        let simRef = null;
+        const createSimulation = () => {
+            let tick = 0, loss = 0.05;
+            let phases = {W:0, X:Math.PI/2, Y:Math.PI, Z:3*Math.PI/2, V:Math.PI/4};
+            let gradNorms = Array(8).fill(1.0).map(()=>gauss(1.0,0.2));
+            return {
+                step: () => {
+                    tick++;
+                    loss = Math.max(0.025, loss * 0.9995 + gauss(0,0.001));
+                    const coherence = 0.8 + Math.random() * 0.15;
+                    gradNorms = gradNorms.map(g => Math.max(0.05, gauss(g*0.99, 0.1)));
+                    return {tick, timestamp:Date.now(), loss, coherence, phases, gradNorms, locked:coherence>0.85, mobiusPhi:PHI_NOMINAL + 0.1*Math.sin(tick*0.05)};
+                }
+            };
+        };
+
+        let verts5D, edges, canvas, ctx, currentData = {}, currentScale = 280;
+        function draw() {
+            if (!ctx) return;
+            const W = canvas.width, H = canvas.height, cx = W/2, cy = H/2;
+            ctx.fillStyle = '#0a0a1a'; ctx.fillRect(0,0,W,H);
+            const t = currentData.tick * 0.008;
+            const angles = [t*0.1, t*0.15*PHI, t*0.2, t*0.05, t*0.12, t*0.08, t*0.18, t*0.22, t*0.06, t*0.14];
+            const projected = verts5D.map(v => project5Dto2D(rotate5D(v, angles), {mobiusPhase: currentData.mobiusPhi}));
+            
+            ctx.strokeStyle = '#ffffff08'; ctx.lineWidth = 0.5;
+            edges.forEach(([i,j]) => {
+                ctx.beginPath();
+                ctx.moveTo(cx + projected[i][0]*currentScale, cy + projected[i][1]*currentScale);
+                ctx.lineTo(cx + projected[j][0]*currentScale, cy + projected[j][1]*currentScale);
+                ctx.stroke();
+            });
+
+            projected.forEach((p, i) => {
+                ctx.fillStyle = i % 2 === 0 ? '#00f5d444' : '#7b2fff44';
+                ctx.beginPath();
+                ctx.arc(cx + p[0]*currentScale, cy + p[1]*currentScale, 2, 0, Math.PI*2);
+                ctx.fill();
+            });
+
+            requestAnimationFrame(draw);
+        }
+
+        function updateUI() {
+            document.getElementById('footer-step').textContent = `STEP: ${String(currentData.tick).padStart(6, '0')} | φ = ${currentData.mobiusPhi.toFixed(6)} | 3-6-9 TOPOLOGY`;
+        }
+
+        let running = true, lowPower = false;
+        function toggleRun() { running = !running; document.getElementById('run-btn').textContent = running ? '■ PAUSE' : '▶ RUN'; }
+        function emergencyStop() { running = false; alert('EMERGENCY STOP — Resonance field collapsed.'); }
+        function resonancePulse() {
+            if (!currentData) return;
+            currentData.coherence = 0.99;
+            const audio = new (window.AudioContext || window.webkitAudioContext)();
+            const osc = audio.createOscillator(); osc.frequency.value = 440 * PHI;
+            const gain = audio.createGain(); gain.gain.value = 0.1;
+            osc.connect(gain).connect(audio.destination);
+            osc.start(); setTimeout(() => osc.stop(), 500);
+        }
+
+        function createScaleButtons() {
+            const container = document.getElementById('scale-buttons');
+            Object.values(SCALES).forEach(s => {
+                const btn = document.createElement('button');
+                btn.innerHTML = `${s.icon} ${s.name}`;
+                btn.style.cssText = `padding:6px 14px;font-size:9px;letter-spacing:1px;border:1px solid ${s.color};background:#080818;color:#00f5d4;border-radius:4px;`;
+                btn.onclick = () => { currentScale = 280; document.getElementById('scale-name').innerHTML = `${s.name} SCALE — 5D PENTERACT • 32V • 80E • φ=${PHI.toFixed(4)}`; };
+                container.appendChild(btn);
+            });
+        }
+
+        window.onload = () => {
+            canvas = document.getElementById('canvas');
+            ctx = canvas.getContext('2d');
+            verts5D = buildPenteractVertices();
+            edges = buildPenteractEdges(verts5D);
+            simRef = createSimulation();
+            currentData = simRef.step();
+            createScaleButtons();
+            updateUI();
+            draw();
+            setInterval(() => { if (running) { currentData = simRef.step(); updateUI(); } }, 150);
+        };
+    </script>
 </body>
 </html>
