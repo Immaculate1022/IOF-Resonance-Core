@@ -3,9 +3,11 @@
 **A global immune system for endpoints. Free, real-time, behavioral defense against ransomware.**
 
 Copyright 2026 Gregory Scott Davis  
-Licensed under Apache License 2.0
+Licensed under [Apache License 2.0](./LICENSE)
 
-## The Problem
+---
+
+## Overview
 
 Ransomware dwell time is 5-60 seconds. EDR response time is 30-300 seconds. That gap is where companies die.
 
@@ -30,10 +32,32 @@ Result: Patient Zero loses files. Patient Two loses nothing.
 - **Deception**: Rotating honeyfiles + honeycreds trip attackers and waste their time
 - **Free Forever**: Apache 2.0. Use it, fork it, embed it. No EEE.
 
+## Components
+
+### IOF v3 Dashboard (Station 2)
+The repository includes `IOFv3Dashboard.jsx`, a high-fidelity React component for monitoring flux, latency, and system resonance. It features:
+- **Flux Engine**: Real-time physics-based state monitoring.
+- **Palindrome Buffer**: Mirror memory for tracking system deltas.
+- **Resonance Detection**: Visualizes global containment status.
+
+## Project Structure
+
+```text
+.
+├── docs/                   # Technical documentation and licenses
+│   ├── AHR.pdf
+│   ├── AHRengine.pdf
+│   └── Immunelicense.pdf
+├── IOFv3Dashboard.jsx      # Station 2 Flux Dashboard (React)
+├── LICENSE                 # Apache 2.0 License
+├── README.md               # Project overview and quickstart
+└── .gitignore              # Standard ignore rules
+```
+
 ## Quickstart
 
 ```bash
-git clone https://github.com/ahr-project/ahr-endpoint
-cd ahr-endpoint
-docker-compose up # NATS + Redis + AHR daemon
+git clone https://github.com/Immaculate1022/Immune-license-docs.git
+cd Immune-license-docs
+# To use the dashboard, import IOFv3Dashboard into your React app
 ```
