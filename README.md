@@ -3,7 +3,7 @@
 **A global immune system for endpoints. Free, real-time, behavioral defense against ransomware.**
 
 Copyright 2026 Gregory Scott Davis  
-Licensed under [Apache License 2.0](./LICENSE)
+Licensed under IOF Attribution License v1.0](./LICENSE)
 
 ---
 
@@ -30,7 +30,7 @@ Result: Patient Zero loses files. Patient Two loses nothing.
 - **Graduated Response**: `SUSPEND_PROC` → `FLAG_FOR_HUMAN_REVIEW` → `KILL_TREE` → `ISOLATE_HOST`
 - **Identity Fusion**: `REVOKE_SESSION` + `TRIGGER_MFA_REPROMPT` built into endpoint logic
 - **Deception**: Rotating honeyfiles + honeycreds trip attackers and waste their time
-- **Free Forever**: Apache 2.0. Use it, fork it, embed it. No EEE.
+- **Free Forever**: IOF Attribution License v1.0. Use it, fork it, embed it. Attribution required.
 
 ## Components
 
@@ -59,7 +59,7 @@ A conceptual brief (`docs/ExecutiveWhitePaper.md`) for investors and engineers, 
 ├── index.html              # IOF Resonance Web Visualization (Entry)
 ├── IOF_Resonance_Complete.jsx # IOF Resonance Dashboard (React)
 ├── IOFv3Dashboard.jsx      # Station 2 Flux Dashboard (React)
-├── LICENSE                 # Apache 2.0 License
+├── LICENSE                 # IOF Attribution License v1.0
 ├── README.md               # Project overview and quickstart
 └── .gitignore              # Standard ignore rules
 ```
