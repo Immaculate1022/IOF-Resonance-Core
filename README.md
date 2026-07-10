@@ -34,42 +34,45 @@ Result: Patient Zero loses files. Patient Two loses nothing.
 
 ## Components
 
+### Forensic Telemetry AI Analyst Dashboard
+The `ForensicTelemetry.jsx` component is a high-integration dashboard featuring:
+- **Universal Streaming**: Real-time AI analysis using advanced LLM hooks.
+- **Forensic Tools**: Live querying of system metrics, event logs, and telemetry history.
+- **Threat Visualization**: Real-time radar and chart-based anomaly detection.
+
 ### IOF Resonance Production Enterprise System v4.0
 The `iof_resonance_production.py` script is a complete production-ready system featuring:
 - **CI/CD Pipelines**: Automated GitHub Actions and GitLab CI workflows.
-- **Monitoring**: Integrated Prometheus and Grafana configurations for real-time telemetry.
+- **Monitoring**: Integrated Prometheus and Grafana configurations.
 - **Cost Optimization**: Intelligent resource allocation and spot instance strategies.
-- **SLA Tracking**: Automated violation detection and compliance reporting.
 
 ### Topographic Peak Ascent
 The `TopographicPeakAscent.jsx` component implements an enhanced topological memory bank with peak detection. It enables the AI to visualize the resonance landscape and actively navigate toward optimal summits.
 
 ### IOF Resonance Visualization
-A web-based dashboard (`index.html` & `IOF_Resonance_Complete.jsx`) providing a real-time, physics-driven visualization of topological manifold resonance and signal integrity.
+A web-based dashboard (`index.html` & `IOF_Resonance_Complete.jsx`) providing a real-time, physics-driven visualization of topological manifold resonance.
 
-### IOF v3 Dashboard (Station 2)
-The repository includes `IOFv3Dashboard.jsx`, a high-fidelity React component for monitoring flux, latency, and system resonance.
+## Documentation
 
-### The Cosmological Bridge
-A technical document (`docs/CosmologicalBridge.md`) exploring the Infinite Optical Fabric as an implementation of cosmic principles, mapping galactic architecture to TFLN-based engineering.
-
-### Executive White Paper
-A conceptual brief (`docs/ExecutiveWhitePaper.md`) for investors and engineers, outlining the shift from dissipative logic to topological mode convergence and the solution to the "AI Power Wall."
+- **[Topological Optimization & Emergency Recovery Logic](./docs/TopologicalOptimizationLogic.md)**: A deep dive into the conceptual framework of self-healing systems and state reversion.
+- **[The Cosmological Bridge](./docs/CosmologicalBridge.md)**: Exploring the Infinite Optical Fabric as an implementation of cosmic principles.
+- **[Executive White Paper](./docs/ExecutiveWhitePaper.md)**: A conceptual brief for investors and engineers.
 
 ## Project Structure
 
 ```text
 .
+├── .github/workflows/      # Automated CI/CD Workflows
+│   └── android_build.yml   # Automated Android APK Build
 ├── docs/                   # Technical documentation and licenses
-│   ├── AHR.pdf
-│   ├── AHRengine.pdf
 │   ├── CosmologicalBridge.md
 │   ├── ExecutiveWhitePaper.md
-│   └── Immunelicense.pdf
+│   └── TopologicalOptimizationLogic.md
 ├── index.html              # IOF Resonance Web Visualization (Entry)
 ├── IOF_Resonance_Complete.jsx # IOF Resonance Dashboard (React)
 ├── IOFv3Dashboard.jsx      # Station 2 Flux Dashboard (React)
 ├── TopographicPeakAscent.jsx # Topological Peak Ascent Optimizer (React)
+├── ForensicTelemetry.jsx   # AI Analyst Dashboard (React)
 ├── iof_resonance_production.py # Enterprise Production System (Python)
 ├── LICENSE                 # IOF Attribution License v1.0
 ├── README.md               # Project overview and quickstart
@@ -81,5 +84,5 @@ A conceptual brief (`docs/ExecutiveWhitePaper.md`) for investors and engineers, 
 ```bash
 git clone https://github.com/Immaculate1022/Immune-license-docs.git
 cd Immune-license-docs
-# To use the dashboard, import components into your React app
+# To use the dashboards, import components into your React app
 ```
