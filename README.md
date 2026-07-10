@@ -39,7 +39,6 @@ The **Infinite Optical Fabric (IOF)** is a high-dimensional resonance platform d
 ```bash
 # Clone or download
 cd iof-resonance
-
 # Serve locally (any static server)
 python -m http.server 8080
 # OR
@@ -48,13 +47,37 @@ npx serve .
 
 ---
 
+## 📚 Documentation
+
+*   **[The Cosmological Bridge](docs/CosmologicalBridge.md)**: A profound philosophical and technical document outlining the universal topology and post-von Neumann paradigm of the IOF.
+*   **[Technical Brief: Analysis of IOF Core and Photonic AI Deployment](docs/TechnicalBrief_PhotonicAI.md)**: An in-depth analysis of the `iof_core` framework, TFLN manifolds, Mobius topology, and Photonic Standing Waves.
+*   **[AI Collaboration Case Study](docs/AI_Collaboration_Case_Study.md)**: A chronicle of the collaborative development, detailing the iterative process between human architect Gregory Scott Davis and multiple AI models.
+*   **[Topological Optimization & Emergency Recovery Logic](docs/TopologicalOptimizationLogic.md)**: A deep dive into the conceptual framework of self-healing systems and state reversion.
+
+---
+
 ## 📂 Project Structure
-*   `index.html`: Standalone simulation engine (HTML5/JS).
-*   `ForensicDashboard_React.jsx`: Modern React implementation of the dashboard.
-*   `ForensicTelemetry.jsx`: AI-integrated forensic analyst dashboard with Resonance Engine.
-*   `TopographicPeakAscent.jsx`: Topological optimization visualizer.
-*   `iof_resonance_production.py`: Enterprise-grade production stack (v5.0).
-*   `LICENSE`: IOF Attribution License v1.0.
+
+```text
+.
+├── .github/workflows/      # Automated CI/CD Workflows
+│   └── android_build.yml   # Automated Android APK Build
+├── docs/                   # Technical documentation and licenses
+│   ├── AI_Collaboration_Case_Study.md
+│   ├── CosmologicalBridge.md
+│   ├── TechnicalBrief_PhotonicAI.md
+│   └── TopologicalOptimizationLogic.md
+├── index.html              # IOF Resonance Web Visualization (Entry)
+├── ForensicDashboard_React.jsx # Standalone React-based Forensic Dashboard
+├── ForensicTelemetry.jsx   # AI Analyst Dashboard (React)
+├── ForensicTelemetry_Standalone.html # Lightweight Standalone Forensic Dashboard
+├── TopographicPeakAscent.jsx # Topological Peak Ascent Optimizer (React)
+├── iof_resonance_production.py # Enterprise Production System (Python)
+├── IOFv3_Core.js           # Standardized Core Engine for IOF-integrated applications
+├── LICENSE                 # IOF Attribution License v1.0
+├── README.md               # Project overview and quickstart
+└── .gitignore              # Standard ignore rules
+```
 
 ---
 
