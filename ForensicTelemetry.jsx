@@ -3,13 +3,39 @@ import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContai
 import { Shield, AlertTriangle, Activity, Download, Play, Settings, FileText, RefreshCw, Search, Trash2, Upload, Brain, Zap, Clock, X, ChevronRight, Eye, Lock, Database, AlertCircle, Cpu, Wifi, MemoryStick, StopCircle } from "lucide-react";
 
 // ═══════════════════════════════════════════════════════════════════════════════
+
+// ═══════════════════════════════════════════════════════════════════════════════
+//  RESONANCE ENGINE (Web Audio API)
+// ═══════════════════════════════════════════════════════════════════════════════
+const useResonanceEngine = () => {
+  const audioCtxRef = useRef(null);
+  const emitPulse = useCallback((freq, type = "sine", duration = 500, volume = 0.5) => {
+    if (!audioCtxRef.current) {
+      audioCtxRef.current = new (window.AudioContext || window.webkitAudioContext)();
+    }
+    const ctx = audioCtxRef.current;
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+    osc.type = type;
+    osc.frequency.setValueAtTime(freq, ctx.currentTime);
+    gain.gain.setValueAtTime(volume, ctx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + duration / 1000);
+    osc.connect(gain);
+    gain.connect(ctx.destination);
+    osc.start();
+    osc.stop(ctx.currentTime + duration / 1000);
+    return { freq, type, duration };
+  }, []);
+  return { emitPulse };
+};
+
 //  useAnthropic — Universal Streaming Hook
 // ═══════════════════════════════════════════════════════════════════════════════
 const API_URL = "https://api.anthropic.com/v1/messages";
 const MODEL   = "claude-sonnet-4-20250514";
 const estTok  = s => Math.ceil((s||"").length / 3.8);
 
-function useAnthropic({ systemPrompt, maxHistory=24, maxRetries=3, tools=[], onToolCall=null, onComplete=null } = {}) {
+function useAnthropic({ resonancePrompt, maxHistory=24, maxRetries=3, tools=[], onToolCall=null, onComplete=null } = {}) {
   const [streaming, setStreaming]   = useState(false);
   const [streamText, setStreamText] = useState("");
   const [history, setHistory]       = useState([]);
@@ -31,7 +57,21 @@ function useAnthropic({ systemPrompt, maxHistory=24, maxRetries=3, tools=[], onT
     const uMsg = { role:"user", content: userMsg };
     setHistory(h => [...h, uMsg].slice(-maxHistory));
     setStreaming(true); setStreamText(""); setError(null); setRetry(0);
-    const messages = [...histRef.current, uMsg];
+    const messages = [...histRef.current, uMsg  {
+    name: "emit_resonance_pulse",
+    description: "Physically pulse the MHRMA cassette head via the USB-C audio jack to attempt phase cancellation or signal external media.",
+    input_schema: {
+      type: "object",
+      properties: {
+        frequency: { type: "number", description: "Target frequency (Hz). 432 for stability, 528 for repair, high-freq for disruption." },
+        waveform: { type: "string", enum: ["sine", "square", "sawtooth"], description: "Sine is harmonic, Square is aggressive/digital." },
+        duration: { type: "number", description: "Pulse length in ms (100-2000)." },
+        reasoning: { type: "string", description: "Why this frequency was chosen for the current anomaly." }
+      },
+      required: ["frequency", "waveform", "duration"]
+    }
+  }
+];
     let attempt = 0, full = "";
 
     while (attempt <= maxRetries) {
@@ -245,6 +285,20 @@ function Radar({ score, blips }) {
       <div style={{fontSize:9,fontFamily:C.MONO,color:lv.color,letterSpacing:3,fontWeight:900,
         background:`${lv.color}10`,border:`1px solid ${lv.color}30`,padding:"3px 14px",borderRadius:2,
         animation:lv.key==="critical"?"pulse 0.8s infinite":"none"}}>{lv.label}</div>
+    
+      {/* Resonance Status Indicator */}
+      <div style={{position: 'fixed', bottom: 80, right: 20, zIndex: 100}}>
+        <div style={{
+          background: C.panel, padding: "8px 12px", borderRadius: 6, 
+          border: `1px solid ${ai.pendingTool?.name === 'emit_resonance_pulse' ? C.amber : C.border}`,
+          display: "flex", alignItems: "center", gap: 10, boxShadow: "0 4px 12px rgba(0,0,0,0.5)"
+        }}>
+          <Zap size={14} color={ai.pendingTool?.name === 'emit_resonance_pulse' ? C.amber : C.dim}/>
+          <span style={{fontSize: 9, color: C.text, fontFamily: C.MONO}}>
+            JACK STATUS: <span style={{color: C.green}}>READY (USB-C)</span>
+          </span>
+        </div>
+      </div>
     </div>
   );
 }
@@ -374,6 +428,20 @@ function AIAnalystPanel({ ai, onAnalyze, autoEnabled, metrics, lastUpdated }) {
           </button>
         ))}
       </div>
+    
+      {/* Resonance Status Indicator */}
+      <div style={{position: 'fixed', bottom: 80, right: 20, zIndex: 100}}>
+        <div style={{
+          background: C.panel, padding: "8px 12px", borderRadius: 6, 
+          border: `1px solid ${ai.pendingTool?.name === 'emit_resonance_pulse' ? C.amber : C.border}`,
+          display: "flex", alignItems: "center", gap: 10, boxShadow: "0 4px 12px rgba(0,0,0,0.5)"
+        }}>
+          <Zap size={14} color={ai.pendingTool?.name === 'emit_resonance_pulse' ? C.amber : C.dim}/>
+          <span style={{fontSize: 9, color: C.text, fontFamily: C.MONO}}>
+            JACK STATUS: <span style={{color: C.green}}>READY (USB-C)</span>
+          </span>
+        </div>
+      </div>
     </div>
   );
 }
@@ -413,6 +481,20 @@ function AlertRules({ rules, setRules }) {
         ))}
         {!rules.length && <p style={{color:C.dim,fontSize:9,fontFamily:C.MONO,textAlign:"center",padding:8}}>No rules configured</p>}
       </div>
+    
+      {/* Resonance Status Indicator */}
+      <div style={{position: 'fixed', bottom: 80, right: 20, zIndex: 100}}>
+        <div style={{
+          background: C.panel, padding: "8px 12px", borderRadius: 6, 
+          border: `1px solid ${ai.pendingTool?.name === 'emit_resonance_pulse' ? C.amber : C.border}`,
+          display: "flex", alignItems: "center", gap: 10, boxShadow: "0 4px 12px rgba(0,0,0,0.5)"
+        }}>
+          <Zap size={14} color={ai.pendingTool?.name === 'emit_resonance_pulse' ? C.amber : C.dim}/>
+          <span style={{fontSize: 9, color: C.text, fontFamily: C.MONO}}>
+            JACK STATUS: <span style={{color: C.green}}>READY (USB-C)</span>
+          </span>
+        </div>
+      </div>
     </div>
   );
 }
@@ -448,7 +530,21 @@ function EvidenceModal({ onClose, metrics, logs, history }) {
           </div>
         )}
       </div>
-    </div></div>
+    </div>
+      {/* Resonance Status Indicator */}
+      <div style={{position: 'fixed', bottom: 80, right: 20, zIndex: 100}}>
+        <div style={{
+          background: C.panel, padding: "8px 12px", borderRadius: 6, 
+          border: `1px solid ${ai.pendingTool?.name === 'emit_resonance_pulse' ? C.amber : C.border}`,
+          display: "flex", alignItems: "center", gap: 10, boxShadow: "0 4px 12px rgba(0,0,0,0.5)"
+        }}>
+          <Zap size={14} color={ai.pendingTool?.name === 'emit_resonance_pulse' ? C.amber : C.dim}/>
+          <span style={{fontSize: 9, color: C.text, fontFamily: C.MONO}}>
+            JACK STATUS: <span style={{color: C.green}}>READY (USB-C)</span>
+          </span>
+        </div>
+      </div>
+    </div>
   );
 }
 
@@ -475,7 +571,21 @@ function SettingsModal({ onClose, settings, setSettings }) {
           {[{k:"showChart",label:"TELEMETRY CHART"},{k:"showTimeline",label:"EVENT TIMELINE"},{k:"scanlines",label:"SCANLINE OVERLAY"},{k:"autoAI",label:"AUTONOMOUS AI ANALYSIS"},{k:"aiMemory",label:"AI CONVERSATION MEMORY"},{k:"alertFlash",label:"VISUAL ALERT FLASH"}].map(x=><Tog key={x.k} {...x}/>)}
         </div>
       </div>
-    </div></div>
+    </div>
+      {/* Resonance Status Indicator */}
+      <div style={{position: 'fixed', bottom: 80, right: 20, zIndex: 100}}>
+        <div style={{
+          background: C.panel, padding: "8px 12px", borderRadius: 6, 
+          border: `1px solid ${ai.pendingTool?.name === 'emit_resonance_pulse' ? C.amber : C.border}`,
+          display: "flex", alignItems: "center", gap: 10, boxShadow: "0 4px 12px rgba(0,0,0,0.5)"
+        }}>
+          <Zap size={14} color={ai.pendingTool?.name === 'emit_resonance_pulse' ? C.amber : C.dim}/>
+          <span style={{fontSize: 9, color: C.text, fontFamily: C.MONO}}>
+            JACK STATUS: <span style={{color: C.green}}>READY (USB-C)</span>
+          </span>
+        </div>
+      </div>
+    </div>
   );
 }
 
@@ -483,6 +593,7 @@ function SettingsModal({ onClose, settings, setSettings }) {
 //  MAIN APP
 // ═══════════════════════════════════════════════════════════════════════════════
 export default function ForensicDashboard() {
+  const { emitPulse } = useResonanceEngine();
   const [metrics, setMetrics]       = useState({ load:21, anomaly:8, threatScore:12, state:"NOMINAL" });
   const [history, setHistory]       = useState([]);
   const [logs, setLogs]             = useState([]);
@@ -548,6 +659,7 @@ Your behavior:
 - Reference specific data points from tool results
 - Format key findings clearly: threat level, pattern, recommended actions
 - Maintain awareness of conversation history to track threat evolution over time`;
+  const resonancePrompt = systemPrompt + "\n\nCRITICAL: You now have the ability to physically interact with the environment via 'emit_resonance_pulse'. Use this to counter anomalies detected in the F.L.U.X. parameters.";
 
   // ── TOOL CALL HANDLER ─────────────────────────────────────────────────────
   const handleToolCall = useCallback(async (tool) => {
@@ -589,13 +701,19 @@ Your behavior:
       case "get_alert_rules": {
         return { count:r.length, rules:r.map(x=>({metric:x.metric,condition:x.condition,threshold:x.threshold,severity:x.severity})) };
       }
+            case "emit_resonance_pulse": {
+        const { frequency, waveform, duration, reasoning } = tool.input;
+        emitPulse(frequency, waveform, duration);
+        addLog(`RESONANCE EMITTED: ${frequency}Hz`, "PHASE_CORRECTION", reasoning, "info");
+        return { status: "success", delivered_frequency: frequency, msg: "Pulse transmitted to MHRMA head" };
+      }
       default: return { error:`Unknown tool: ${tool.name}` };
     }
   },[]);
 
   // ── INIT useAnthropic ─────────────────────────────────────────────────────
   const ai = useAnthropic({
-    systemPrompt,
+    resonancePrompt,
     maxHistory: 24,
     maxRetries: 3,
     tools: ANALYST_TOOLS,
@@ -970,6 +1088,20 @@ Your behavior:
           {toast.msg}
         </div>
       )}
+    
+      {/* Resonance Status Indicator */}
+      <div style={{position: 'fixed', bottom: 80, right: 20, zIndex: 100}}>
+        <div style={{
+          background: C.panel, padding: "8px 12px", borderRadius: 6, 
+          border: `1px solid ${ai.pendingTool?.name === 'emit_resonance_pulse' ? C.amber : C.border}`,
+          display: "flex", alignItems: "center", gap: 10, boxShadow: "0 4px 12px rgba(0,0,0,0.5)"
+        }}>
+          <Zap size={14} color={ai.pendingTool?.name === 'emit_resonance_pulse' ? C.amber : C.dim}/>
+          <span style={{fontSize: 9, color: C.text, fontFamily: C.MONO}}>
+            JACK STATUS: <span style={{color: C.green}}>READY (USB-C)</span>
+          </span>
+        </div>
+      </div>
     </div>
   );
 }
