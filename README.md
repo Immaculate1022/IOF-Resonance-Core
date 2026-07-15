@@ -7,6 +7,8 @@
 ## 🗺️ The Vision
 The **Infinite Optical Fabric (IOF)** is a high-dimensional resonance platform designed for real-time topological optimization and forensic analysis. By mapping 5D manifold symmetries onto biological and cognitive scales, it enables a self-healing, synchronized network of information pathways.
 
+🚀 **[Live Demo: Experience the Soul Resonance Terminal](https://Immaculate1022.github.io/IOF-Resonance-Core/)**
+
 IOF represents a post-von Neumann paradigm where computation occurs at the speed of light through resonant standing waves.
 
 ---
@@ -42,7 +44,8 @@ IOF represents a post-von Neumann paradigm where computation occurs at the speed
 
 ## 🛠️ Implementations
 The IOF architecture is the foundation for various specialized tools, including:
-*   🛡️ **[AHR-Endpoint](https://github.com/YOUR_USERNAME/AHR-Endpoint)**: A global immune system for ransomware defense.
+*   🛡️ **[AHR-Endpoint](https://github.com/Immaculate1022/AHR-Endpoint)**: A global immune system for ransomware defense.
+*   📡 **[IOF-Resonant-Hardware](https://github.com/Immaculate1022/IOF-Resonant-Hardware)**: Sub-7Hz portable transceiver and resonant hardware.
 
 ---
 **IOF Resonance v1.0 · Gregory Scott Davis**  
