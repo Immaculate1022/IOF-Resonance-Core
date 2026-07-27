@@ -54,6 +54,7 @@ IOF represents a post-von Neumann paradigm where computation occurs at the speed
 *   **[IOF-Urban Protocol v1.0](docs/UrbanProtocol_v1.md)**: Luminous Grid Mesh — streetlight masts as phase-coherent optical nodes in a city-scale self-healing computing substrate.
 *   **[IOF v3 Gold Build Integration Report](docs/GoldBuild_IntegrationReport.md)**: System evolution from Ascent Engine V2 through Meta-Governor to the Gold Client.
 *   **[3-of-5 Multisig Protocol](docs/MultisigProtocol_3of5.md)**: Human-centric consensus mechanism for decentralized dispute resolution and higher-order governance.
+*   **[State Recovery Design Notes](docs/StateRecovery_DesignNotes.md)**: The memory-recall/confidence-decay rollback mechanism and its application roadmap (finance, swarms, AI orchestration).
 
 ---
 
