@@ -42,6 +42,7 @@ IOF represents a post-von Neumann paradigm where computation occurs at the speed
 | [`moebius_llama_setup.py`](moebius_llama_setup.py) | Python (PyTorch) | Experimental Möbius-Llama patcher — replaces Llama transformer layers with Möbius loop blocks using golden-ratio-scaled backward reflection. Requires `torch` + `transformers`. |
 | [`iof_resonance_production.py`](iof_resonance_production.py) | Python | Production stack scaffolding: CI/CD generators, Prometheus/Grafana configs, cost optimization, auto-scaling. |
 | [`TopographicPeakAscent.jsx`](TopographicPeakAscent.jsx) | React | Photonic dashboard with topographic ascent visualization and peak-detecting memory bank. |
+| [`setup.sh`](setup.sh) | Bash | **Master Setup Script**: A comprehensive tool for initializing the entire PegaConstellation ecosystem, including AHR-Endpoint, Möbius-Llama, and Aetherius Nexus. |
 
 ---
 
