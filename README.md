@@ -52,6 +52,7 @@ IOF represents a post-von Neumann paradigm where computation occurs at the speed
 ---
 
 ## 📚 Technical & Philosophical Documentation
+*   **[Ecosystem Summary](docs/EcosystemSummary.md)**: High-level overview of the PegaConstellation project, components, and roadmap. ([PDF Version](docs/PegaConstellation_EcosystemSummary.pdf))
 *   **[The Cosmological Bridge](docs/CosmologicalBridge.md)**: Universal topology and the physics of the IOF.
 *   **[Technical Brief: Photonic AI Deployment](docs/TechnicalBrief_PhotonicAI.md)**: TFLN manifolds and Mobius topology.
 *   **[AI Collaboration Case Study](docs/AI_Collaboration_Case_Study.md)**: The human-AI development process.
