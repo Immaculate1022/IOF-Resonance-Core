@@ -39,6 +39,10 @@ IOF represents a post-von Neumann paradigm where computation occurs at the speed
 | :--- | :--- | :--- |
 | [`topological_ascent_engine_v2.py`](topological_ascent_engine_v2.py) | Python | Debugged Ascent Engine v2 — multi-peak φ landscape, memory bank, ASCENT/RECALL/STABILIZE/HOLD reasoner, IOF v3 bus hooks (`inject_external` / `emit_state`). Run `python3 topological_ascent_engine_v2.py` for the smoke test. |
 | [`IOFv3_Core.js`](IOFv3_Core.js) | JavaScript | IOF v3 Station 2 FluxEngine — F/L/U/X spring-damper physics, PalindromeBuffer, resonance metric, pub/sub, optional React dashboard. |
+| [`ForensicDashboard_React.jsx`](ForensicDashboard_React.jsx) | React | **Forensic Dashboard**: A high-fidelity React dashboard for IOF Resonance, featuring real-time telemetry and state visualization. |
+| [`ForensicTelemetry.jsx`](ForensicTelemetry.jsx) | React | **Forensic Telemetry**: A comprehensive telemetry component using Recharts for visualizing signal integrity, latency, and throughput. |
+| [`ForensicTelemetry_Standalone.html`](ForensicTelemetry_Standalone.html) | HTML/React | **Standalone Telemetry Viewer**: A self-contained version of the forensic telemetry dashboard for quick deployment. |
+| [`schema.json`](schema.json) | JSON | **Project Schema**: Structured metadata for the Infinite Optical Fabric, following Schema.org standards. |
 | [`moebius_llama_setup.py`](moebius_llama_setup.py) | Python (PyTorch) | Experimental Möbius-Llama patcher — replaces Llama transformer layers with Möbius loop blocks using golden-ratio-scaled backward reflection. Requires `torch` + `transformers`. |
 | [`iof_resonance_production.py`](iof_resonance_production.py) | Python | Production stack scaffolding: CI/CD generators, Prometheus/Grafana configs, cost optimization, auto-scaling. |
 | [`TopographicPeakAscent.jsx`](TopographicPeakAscent.jsx) | React | Photonic dashboard with topographic ascent visualization and peak-detecting memory bank. |
