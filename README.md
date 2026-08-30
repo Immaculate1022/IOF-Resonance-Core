@@ -7,7 +7,7 @@
 ## 🗺️ The Vision
 The **Infinite Optical Fabric (IOF)** is a high-dimensional resonance platform designed for real-time topological optimization and forensic analysis. By mapping 5D manifold symmetries onto biological and cognitive scales, it enables a self-healing, synchronized network of information pathways.
 
-🚀 **[Live Demo: Experience the Soul Resonance Terminal](https://Immaculate1022.github.io/IOF-Resonance-Core/)**
+🚀 **Local demo:** open [`ForensicTelemetry_Standalone.html`](ForensicTelemetry_Standalone.html) directly in a browser to inspect the standalone telemetry viewer. A hosted Pages demo is not currently available; this README intentionally avoids linking to a dead URL.
 
 IOF represents a post-von Neumann paradigm where computation occurs at the speed of light through resonant standing waves.
 
@@ -41,7 +41,7 @@ IOF represents a post-von Neumann paradigm where computation occurs at the speed
 | [`IOFv3_Core.js`](IOFv3_Core.js) | JavaScript | IOF v3 Station 2 FluxEngine — F/L/U/X spring-damper physics, PalindromeBuffer, resonance metric, pub/sub, optional React dashboard. |
 | [`ForensicDashboard_React.jsx`](ForensicDashboard_React.jsx) | React | **Forensic Dashboard**: A high-fidelity React dashboard for IOF Resonance, featuring real-time telemetry and state visualization. |
 | [`ForensicTelemetry.jsx`](ForensicTelemetry.jsx) | React | **Forensic Telemetry**: A comprehensive telemetry component using Recharts for visualizing signal integrity, latency, and throughput. |
-| [`ForensicTelemetry_Standalone.html`](ForensicTelemetry_Standalone.html) | HTML/React | **Standalone Telemetry Viewer**: A self-contained version of the forensic telemetry dashboard for quick deployment. |
+| [`ForensicTelemetry_Standalone.html`](ForensicTelemetry_Standalone.html) | HTML/React | **Standalone Telemetry Viewer**: A self-contained version of the forensic telemetry dashboard. Open the file directly for a local demo or serve the repository with any static file server. |
 | [`schema.json`](schema.json) | JSON | **Project Schema**: Structured metadata for the Infinite Optical Fabric, following Schema.org standards. |
 | [`moebius_llama_setup.py`](moebius_llama_setup.py) | Python (PyTorch) | Experimental Möbius-Llama patcher — replaces Llama transformer layers with Möbius loop blocks using golden-ratio-scaled backward reflection. Requires `torch` + `transformers`. |
 | [`iof_resonance_production.py`](iof_resonance_production.py) | Python | Production stack scaffolding: CI/CD generators, Prometheus/Grafana configs, cost optimization, auto-scaling. |
