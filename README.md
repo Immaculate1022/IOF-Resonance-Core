@@ -1,4 +1,4 @@
-# IOF Resonance — Infinite Optical Fabric Core v1.0
+# PegaConstellation > IOF > IOF Resonance Core
 
 > "The architecture is identical. The scale is the only variable." — **Gregory Scott Davis**
 
