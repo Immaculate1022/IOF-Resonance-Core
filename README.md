@@ -80,3 +80,11 @@ The IOF architecture is the foundation for various specialized tools, including:
 ---
 **IOF Resonance v1.0 · Gregory Scott Davis**  
 *Infinite Optical Fabric*
+
+## Concept diagram
+
+![Infinite Optical Fabric Resonance Core conceptual diagram](docs/iof-resonance-core-diagram.webp)
+
+*Figure: conceptual visualization of the IOF Resonance Core, including the proposed 5D penteract network, photonic pathways, φ-weighted coupling, rotation planes, and resonance markers. This is an architecture illustration, not a measured hardware schematic, simulation result, or production-performance claim.*
+
+The diagram is provided as a communication aid for the repository’s research direction. The numerical labels shown in the artwork should be treated as design parameters or conceptual annotations unless a linked experiment provides definitions, units, methods, raw outputs, and reproducible results.
