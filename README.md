@@ -7,7 +7,14 @@
 ## 🗺️ The Vision
 The **Infinite Optical Fabric (IOF)** is a high-dimensional resonance platform designed for real-time topological optimization and forensic analysis. By mapping 5D manifold symmetries onto biological and cognitive scales, it enables a self-healing, synchronized network of information pathways.
 
-🚀 **Local demo:** open [`ForensicTelemetry_Standalone.html`](ForensicTelemetry_Standalone.html) directly in a browser to inspect the standalone telemetry viewer. A hosted Pages demo is not currently available; this README intentionally avoids linking to a dead URL.
+🚀 **Live demos (GitHub Pages):**
+- [URP Soul Terminal (index)](https://immaculate1022.github.io/IOF-Resonance-Core/)
+- [Forensic Telemetry Standalone](https://immaculate1022.github.io/IOF-Resonance-Core/ForensicTelemetry_Standalone.html)
+- [Unity Protocol Visualizer](https://immaculate1022.github.io/IOF-Resonance-Core/UnityProtocol_Visualizer.html)
+
+**Local fallback:** open [`ForensicTelemetry_Standalone.html`](ForensicTelemetry_Standalone.html) directly in a browser.
+
+> **First-time Pages setup:** Repository → **Settings** → **Pages** → Build and deployment **Source** → **GitHub Actions**. After the workflow runs once, the links above go live.
 
 IOF represents a post-von Neumann paradigm where computation occurs at the speed of light through resonant standing waves.
 
