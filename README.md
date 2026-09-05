@@ -88,3 +88,24 @@ The IOF architecture is the foundation for various specialized tools, including:
 *Figure: conceptual visualization of the IOF Resonance Core, including the proposed 5D penteract network, photonic pathways, φ-weighted coupling, rotation planes, and resonance markers. This is an architecture illustration, not a measured hardware schematic, simulation result, or production-performance claim.*
 
 The diagram is provided as a communication aid for the repository’s research direction. The numerical labels shown in the artwork should be treated as design parameters or conceptual annotations unless a linked experiment provides definitions, units, methods, raw outputs, and reproducible results.
+
+## Topographic ascent improvements
+
+The repository now includes a validated research implementation of the topographic-ascent layer:
+
+| Path | Role |
+|---|---|
+| [`TopographicPeakAscent.jsx`](TopographicPeakAscent.jsx) | Self-contained React visualization, bounded memory bank, peak detection, and ascent reasoner. |
+| [`topological_ascent_engine_v3.py`](topological_ascent_engine_v3.py) | Python counterpart with injected-state and emitted-decision hooks. |
+| [`schema/ascent_decision.schema.json`](schema/ascent_decision.schema.json) | Shared decision-object contract for the Python and React layers. |
+| [`tests/test_ascent_engine.py`](tests/test_ascent_engine.py) | Deterministic tests for landscapes, memory, reasoning, and engine output. |
+| [`scripts/smoke_all.sh`](scripts/smoke_all.sh) | One-command syntax, unit, live-smoke, schema, and JSX presence checks. |
+| [`docs/Unified_IOF_Overview.md`](docs/Unified_IOF_Overview.md) | Public framing for the cosmological bridge and engineering/software layers. |
+
+Run the bounded verification path with:
+
+```bash
+bash scripts/smoke_all.sh
+```
+
+The prior visualization is retained as [`TopographicPeakAscent.legacy.jsx`](TopographicPeakAscent.legacy.jsx) for comparison. These components are research and control-policy prototypes; they do not establish physical photonic performance or validate the cosmological mapping.

@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://iof.local/schemas/ascent_decision.schema.json",
+  "title": "IOF Topographic Ascent Decision",
+  "description": "Shared decision object emitted by both the Python and React topographic ascent engines. Keeps JS and Python reasoners in lock-step.",
+  "type": "object",
+  "required": ["type", "conf", "rationale"],
+  "properties": {
+    "type": {
+      "type": "string",
+      "enum": [
+        "ASCENT",
+        "RECALL",
+        "HARMONIC_LOCK",
+        "ENSEMBLE_RECALL",
+        "SHUNT",
+        "STABILIZE",
+        "HOLD"
+      ],
+      "description": "Primary action selected by the reasoner."
+    },
+    "target": {
+      "type": ["number", "null"],
+      "description": "Target value for the controlled parameter (usually φ). Null for HOLD/STABILIZE."
+    },
+    "conf": {
+      "type": "number",
+      "minimum": 0.0,
+      "maximum": 1.0,
+      "description": "Confidence in the decision (0–1)."
+    },
+    "rationale": {
+      "type": "string",
+      "description": "Human-readable explanation, suitable for dashboards and logs."
+    },
+    "param": {
+      "type": "string",
+      "default": "phi",
+      "description": "Which parameter is being adjusted (phi, alpha, …)."
+    },
+    "meta": {
+      "type": "object",
+      "description": "Optional diagnostic payload (peak_q, slope, age, …).",
+      "additionalProperties": true
+    },
+    "step": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Engine step at which the decision was produced."
+    },
+    "source": {
+      "type": "string",
+      "description": "Originating engine (e.g. topological_ascent_engine_v3)."
+    }
+  },
+  "additionalProperties": false
+}
