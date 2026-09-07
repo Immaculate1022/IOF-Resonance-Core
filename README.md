@@ -12,13 +12,20 @@ The **Infinite Optical Fabric (IOF)** is a high-dimensional resonance platform d
 **Works today (local):**
 - Open [`ForensicTelemetry_Standalone.html`](ForensicTelemetry_Standalone.html) directly in a browser
 - Open [`UnityProtocol_Visualizer.html`](UnityProtocol_Visualizer.html) the same way
+- Open [`index.html`](index.html) (URP Soul Terminal)
 - Or serve the repo with any static file server
 
-**GitHub Pages (currently down):**  
-Documented Pages URLs return HTTP 404 as of 2026-09-07. To restore:
-Repository → **Settings** → **Pages** → Build and deployment **Source** → **GitHub Actions** (or Deploy from a branch), then re-run the workflow once.
+**GitHub Pages (chosen host — one step from live):**  
+Hosting decision: **GitHub Pages first** (workflow ready; Cloudflare Pages is the backup if unlimited bandwidth is needed later).  
+The deploy workflow stages only the static HTML demos (not the whole repo).  
+Documented URLs still return HTTP 404 until Pages is enabled once in Settings:
 
-Intended Pages paths (after restore):
+1. Repository → **Settings** → **Pages**
+2. Build and deployment **Source** → **GitHub Actions**
+3. Actions → “Deploy GitHub Pages” → Run workflow (or push to `main`)
+4. Approve the `github-pages` environment if prompted
+
+Intended paths after restore:
 - https://immaculate1022.github.io/IOF-Resonance-Core/
 - https://immaculate1022.github.io/IOF-Resonance-Core/ForensicTelemetry_Standalone.html
 - https://immaculate1022.github.io/IOF-Resonance-Core/UnityProtocol_Visualizer.html
