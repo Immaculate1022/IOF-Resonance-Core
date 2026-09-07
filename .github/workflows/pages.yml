@@ -24,14 +24,31 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Stage static demos
+        run: |
+          mkdir -p site
+          # Core demos (self-contained HTML)
+          cp index.html site/
+          cp ForensicTelemetry_Standalone.html site/
+          cp UnityProtocol_Visualizer.html site/
+          # Required so GitHub Pages does not run Jekyll
+          touch site/.nojekyll
+          # Optional: small docs assets referenced by demos if present
+          if [ -d docs ]; then
+            mkdir -p site/docs
+            # copy only image-like assets used by the public surface
+            find docs -maxdepth 2 \( -name '*.webp' -o -name '*.png' -o -name '*.jpg' -o -name '*.svg' \) -exec cp {} site/docs/ \; 2>/dev/null || true
+          fi
+          echo "Staged files:"
+          find site -type f | sort
+
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # Publish repo root static HTML demos as-is
-          path: .
+          path: site
 
       - name: Deploy to GitHub Pages
         id: deployment
