@@ -7,14 +7,21 @@
 ## 🗺️ The Vision
 The **Infinite Optical Fabric (IOF)** is a high-dimensional resonance platform designed for real-time topological optimization and forensic analysis. By mapping 5D manifold symmetries onto biological and cognitive scales, it enables a self-healing, synchronized network of information pathways.
 
-🚀 **Live demos (GitHub Pages):**
-- [URP Soul Terminal (index)](https://immaculate1022.github.io/IOF-Resonance-Core/)
-- [Forensic Telemetry Standalone](https://immaculate1022.github.io/IOF-Resonance-Core/ForensicTelemetry_Standalone.html)
-- [Unity Protocol Visualizer](https://immaculate1022.github.io/IOF-Resonance-Core/UnityProtocol_Visualizer.html)
+### Demos (current status)
 
-**Local fallback:** open [`ForensicTelemetry_Standalone.html`](ForensicTelemetry_Standalone.html) directly in a browser.
+**Works today (local):**
+- Open [`ForensicTelemetry_Standalone.html`](ForensicTelemetry_Standalone.html) directly in a browser
+- Open [`UnityProtocol_Visualizer.html`](UnityProtocol_Visualizer.html) the same way
+- Or serve the repo with any static file server
 
-> **First-time Pages setup:** Repository → **Settings** → **Pages** → Build and deployment **Source** → **GitHub Actions**. After the workflow runs once, the links above go live.
+**GitHub Pages (currently down):**  
+Documented Pages URLs return HTTP 404 as of 2026-09-07. To restore:
+Repository → **Settings** → **Pages** → Build and deployment **Source** → **GitHub Actions** (or Deploy from a branch), then re-run the workflow once.
+
+Intended Pages paths (after restore):
+- https://immaculate1022.github.io/IOF-Resonance-Core/
+- https://immaculate1022.github.io/IOF-Resonance-Core/ForensicTelemetry_Standalone.html
+- https://immaculate1022.github.io/IOF-Resonance-Core/UnityProtocol_Visualizer.html
 
 IOF represents a post-von Neumann paradigm where computation occurs at the speed of light through resonant standing waves.
 
