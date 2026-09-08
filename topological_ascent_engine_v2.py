@@ -18,6 +18,7 @@ IOF v3 Integration:
 
 import math
 import time
+from collections.abc import Callable
 
 
 # ---------------------------------------------------------------------------
@@ -90,8 +91,19 @@ def reason(state: dict, memory: Memory) -> dict:
 # ---------------------------------------------------------------------------
 
 class Engine:
-    def __init__(self, phi_init: float = 0.5):
+    def __init__(
+        self,
+        phi_init: float = 0.5,
+        phase_frequency: float = 0.2,
+        clock: Callable[[], float] | None = None,
+    ):
+        if not math.isfinite(phase_frequency) or phase_frequency < 0:
+            raise ValueError("phase_frequency must be finite and non-negative")
+
         self.memory = Memory()
+        self.phase_frequency = phase_frequency
+        self._clock = clock or time.monotonic
+        self._phase_origin = self._clock()
         self.state = {
             "phi":           phi_init,
             "resonance":     0.5,
@@ -111,13 +123,19 @@ class Engine:
         Keys: phi, resonance, amplitude (controls blend weight, default 0.5).
         """
         if "phi" in iof_state:
-            weight = iof_state.get("amplitude", 0.5)  # stronger default
-            bias = iof_state["phi"]
+            weight = float(iof_state.get("amplitude", 0.5))
+            bias = float(iof_state["phi"])
+            if not math.isfinite(weight) or not math.isfinite(bias):
+                raise ValueError("phi and amplitude must be finite numbers")
+            weight = max(0.0, min(1.0, weight))
             self.state["phi"] += (bias - self.state["phi"]) * weight
             self.state["phi"] = max(0.0, min(1.0, self.state["phi"]))
 
         if "resonance" in iof_state:
-            ext = iof_state["resonance"]
+            ext = float(iof_state["resonance"])
+            if not math.isfinite(ext):
+                raise ValueError("resonance must be a finite number")
+            ext = max(0.0, min(1.0, ext))
             self.state["resonance"] = 0.6 * self.state["resonance"] + 0.4 * ext
 
     # ------------------------------------------------------------------
@@ -127,6 +145,7 @@ class Engine:
         self._step_count += 1
         t = time.time()
         self.state["t"] = t
+        elapsed = max(0.0, self._clock() - self._phase_origin)
 
         decision = reason(self.state, self.memory)
 
@@ -142,8 +161,8 @@ class Engine:
 
         self.state["phi"] = max(0.0, min(1.0, self.state["phi"]))
 
-        # Resonance: true [0, 1] sine (FIX BUG 1)
-        self.state["resonance"] = abs(math.sin(t))
+        # Resonance uses elapsed monotonic time and an explicit frequency.
+        self.state["resonance"] = abs(math.sin(elapsed * self.phase_frequency))
 
         # Q: blend landscape (phi matters) + resonance (FIX BUG 3)
         land_q = landscape(self.state["phi"], t)
@@ -186,6 +205,7 @@ class Engine:
             "alpha":     self.state["alpha"],
             "frequency": self.state["resonance"],
             "amplitude": self.state["q"],
+            "phase_frequency": self.phase_frequency,
             "t":         self.state.get("t", time.time()),
         }
 

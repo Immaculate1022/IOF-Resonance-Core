@@ -1,5 +1,18 @@
 # Topographic Improvements — Changelog
 
+## 2026-09-08 — v2 engine hardening
+
+### Code
+- **topological_ascent_engine_v2.py** — replaced wall-clock resonance with an injectable monotonic clock and explicit phase frequency
+- External `amplitude` blend weights are clamped to `[0, 1]`
+- Non-finite external values are rejected
+- `phase_frequency` is validated and included in emitted state
+
+### Quality
+- Added four deterministic v2 regression tests
+- Full IOF test suite: 15 tests passing
+- Smoke verification remains passing
+
 ## 2026-09-05 — Initial improvement package
 
 ### Code

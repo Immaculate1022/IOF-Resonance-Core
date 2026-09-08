@@ -4,6 +4,16 @@
 
 ---
 
+## Runtime and verification
+
+The Python engines require Python 3.10 or newer. The bounded verification path is:
+
+```bash
+bash scripts/smoke_all.sh
+```
+
+The v2 engine uses a monotonic clock with an explicit phase frequency, clamps external blend weights to `[0, 1]`, and accepts an injectable clock for deterministic tests. External numeric inputs must be finite.
+
 ## 🗺️ The Vision
 The **Infinite Optical Fabric (IOF)** is a high-dimensional resonance platform designed for real-time topological optimization and forensic analysis. By mapping 5D manifold symmetries onto biological and cognitive scales, it enables a self-healing, synchronized network of information pathways.
 
