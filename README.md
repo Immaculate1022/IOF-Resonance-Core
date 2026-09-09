@@ -19,24 +19,26 @@ The **Infinite Optical Fabric (IOF)** is a high-dimensional resonance platform d
 
 ### Demos (current status)
 
-**Works today (local):**
+**Works today (local — preferred path):**
 - Open [`ForensicTelemetry_Standalone.html`](ForensicTelemetry_Standalone.html) directly in a browser
 - Open [`UnityProtocol_Visualizer.html`](UnityProtocol_Visualizer.html) the same way
 - Open [`index.html`](index.html) (URP Soul Terminal)
 - Or serve the repo with any static file server
 
-**GitHub Pages (live):**
+**GitHub Pages (ready, one Settings step remaining):**
 
 Hosting decision: **GitHub Pages first** (Cloudflare Pages is the backup if unlimited bandwidth is needed later).
 
 The deploy workflow stages only the static HTML demos (not the whole repo) and publishes them from the GitHub Pages Actions environment.
 
-The obsolete Android APK workflow is retained for historical context but disabled because this repository contains no Android project.
+**To go live:** Repository Settings → Pages → Source: **GitHub Actions**, then run (or re-run) the “Deploy GitHub Pages” workflow and approve the `github-pages` environment if prompted.
 
-Live paths:
+Intended paths after that step:
 - https://immaculate1022.github.io/IOF-Resonance-Core/
 - https://immaculate1022.github.io/IOF-Resonance-Core/ForensicTelemetry_Standalone.html
 - https://immaculate1022.github.io/IOF-Resonance-Core/UnityProtocol_Visualizer.html
+
+Until the Settings flip, treat the `*.github.io` links as targets, not live endpoints. Local HTML remains the reliable public path.
 
 IOF represents a post-von Neumann paradigm where computation occurs at the speed of light through resonant standing waves.
 
