@@ -20,25 +20,21 @@ The **Infinite Optical Fabric (IOF)** is a high-dimensional resonance platform d
 ### Demos (current status)
 
 **Works today (local — preferred path):**
-- Open [`ForensicTelemetry_Standalone.html`](ForensicTelemetry_Standalone.html) directly in a browser
-- Open [`UnityProtocol_Visualizer.html`](UnityProtocol_Visualizer.html) the same way
-- Open [`index.html`](index.html) (URP Soul Terminal)
-- Or serve the repo with any static file server
+- Open [`ForensicTelemetry_Standalone.html`](ForensicTelemetry_Standalone.html) directly in a browser.
+- Open [`UnityProtocol_Visualizer.html`](UnityProtocol_Visualizer.html) the same way.
+- Open [`index.html`](index.html) for the URP Soul Terminal.
+- Or serve the repository with any static file server.
 
-**GitHub Pages (ready, one Settings step remaining):**
+**GitHub Pages:** the repository workflow stages only the static HTML demos. The documented Pages URLs returned HTTP 404 on 2026-09-12, so they remain targets rather than evidence of a live deployment.
 
-Hosting decision: **GitHub Pages first** (Cloudflare Pages is the backup if unlimited bandwidth is needed later).
-
-The deploy workflow stages only the static HTML demos (not the whole repo) and publishes them from the GitHub Pages Actions environment.
-
-**To go live:** Repository Settings → Pages → Source: **GitHub Actions**, then run (or re-run) the “Deploy GitHub Pages” workflow and approve the `github-pages` environment if prompted.
+**To restore Pages:** Repository → **Settings** → **Pages** → Build and deployment **Source** → **GitHub Actions**, then run or re-run the “Deploy GitHub Pages” workflow and approve the `github-pages` environment if prompted. This is a human GitHub UI action.
 
 Intended paths after that step:
 - https://immaculate1022.github.io/IOF-Resonance-Core/
 - https://immaculate1022.github.io/IOF-Resonance-Core/ForensicTelemetry_Standalone.html
 - https://immaculate1022.github.io/IOF-Resonance-Core/UnityProtocol_Visualizer.html
 
-Until the Settings flip, treat the `*.github.io` links as targets, not live endpoints. Local HTML remains the reliable public path.
+Until the Settings step is completed and the URLs are rechecked, local HTML remains the reliable visual path.
 
 IOF represents a post-von Neumann paradigm where computation occurs at the speed of light through resonant standing waves.
 
@@ -93,6 +89,7 @@ IOF represents a post-von Neumann paradigm where computation occurs at the speed
 *   **[IOF v3 Gold Build Integration Report](docs/GoldBuild_IntegrationReport.md)**: System evolution from Ascent Engine V2 through Meta-Governor to the Gold Client.
 *   **[3-of-5 Multisig Protocol](docs/MultisigProtocol_3of5.md)**: Human-centric consensus mechanism for decentralized dispute resolution and higher-order governance.
 *   **[State Recovery Design Notes](docs/StateRecovery_DesignNotes.md)**: The memory-recall/confidence-decay rollback mechanism and its application roadmap (finance, swarms, AI orchestration).
+*   **[IOF v2 Associative Resonance Research Note](docs/IOF_V2_Associative_Resonance_Research_Note.md)**: A source-grounded proposal for an associative resonance layer, with explicit hypotheses, baselines, metrics, and hardware escalation gates.
 
 ---
 
