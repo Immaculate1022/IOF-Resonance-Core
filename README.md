@@ -1,106 +1,80 @@
-# PegaConstellation > IOF > IOF Resonance Core
+# IOF Resonance Core
 
-> "The architecture is identical. The scale is the only variable." — **Gregory Scott Davis**
+**Infinite Optical Fabric (IOF)** is a high-dimensional resonance research platform. It brings together runnable software models, interactive visualizations, and technical notes for people exploring resonance, topology, and proposed photonic-computing architectures.
 
----
+This repository is for developers, researchers, and curious builders who want to inspect or extend IOF's software layer: topographic-ascent control-policy prototypes, browser visualizations, and supporting design material. Start with the bounded Python check, then open a local visualization.
 
-## Runtime and verification
+> “The architecture is identical. The scale is the only variable.” — **Gregory Scott Davis**
 
-The Python engines require Python 3.10 or newer. The bounded verification path is:
+## Quick start
+
+The checked Python path needs **Python 3.10+** and Bash; it uses only the standard library for the v3 engine.
 
 ```bash
+git clone https://github.com/Immaculate1022/IOF-Resonance-Core.git
+cd IOF-Resonance-Core
 bash scripts/smoke_all.sh
 ```
 
-The v2 engine uses a monotonic clock with an explicit phase frequency, clamps external blend weights to `[0, 1]`, and accepts an injectable clock for deterministic tests. External numeric inputs must be finite.
+The script runs deterministic unit tests for the v3 engine, a short seeded-engine smoke run, and presence checks for the shared schema and JSX component. For the longer command-line example:
 
-## 🗺️ The Vision
-The **Infinite Optical Fabric (IOF)** is a high-dimensional resonance platform designed for real-time topological optimization and forensic analysis. By mapping 5D manifold symmetries onto biological and cognitive scales, it enables a self-healing, synchronized network of information pathways.
+```bash
+python3 topological_ascent_engine_v3.py
+```
 
-### Demos (current status)
+### Try a browser visualization
 
-**Works today (local — preferred path):**
-- Open [`ForensicTelemetry_Standalone.html`](ForensicTelemetry_Standalone.html) directly in a browser.
-- Open [`UnityProtocol_Visualizer.html`](UnityProtocol_Visualizer.html) the same way.
-- Open [`index.html`](index.html) for the URP Soul Terminal.
-- Or serve the repository with any static file server.
+Open one of these files locally in a browser, or serve the repository with a static file server:
 
-**GitHub Pages:** the repository workflow stages only the static HTML demos. The documented Pages URLs returned HTTP 404 on 2026-09-12, so they remain targets rather than evidence of a live deployment.
+| File | What it provides |
+| :--- | :--- |
+| [`ForensicTelemetry_Standalone.html`](ForensicTelemetry_Standalone.html) | A local telemetry interface with simulated values, session-local storage, and no server interaction. |
+| [`UnityProtocol_Visualizer.html`](UnityProtocol_Visualizer.html) | An interactive Unity/Coexistence protocol visualization. |
+| [`index.html`](index.html) | The URP-v1 Soul Terminal interface. |
 
-**To restore Pages:** Repository → **Settings** → **Pages** → Build and deployment **Source** → **GitHub Actions**, then run or re-run the “Deploy GitHub Pages” workflow and approve the `github-pages` environment if prompted. This is a human GitHub UI action.
+Some standalone pages load presentation libraries or fonts from CDNs, so network access can affect their full appearance. The GitHub Pages workflow stages the static HTML files, but the documented Pages URLs returned 404 on 2026-09-12. Until a deployment is independently rechecked, local files are the supported way to try the visuals.
 
-Intended paths after that step:
-- https://immaculate1022.github.io/IOF-Resonance-Core/
-- https://immaculate1022.github.io/IOF-Resonance-Core/ForensicTelemetry_Standalone.html
-- https://immaculate1022.github.io/IOF-Resonance-Core/UnityProtocol_Visualizer.html
+## Status and limitations
 
-Until the Settings step is completed and the URLs are rechecked, local HTML remains the reliable visual path.
+**This is a research and prototyping repository, not a validated photonic-computing system or production controller.** The Python engines model synthetic, bounded landscapes. Their `Q`, resonance, thermal-risk, and decision values are software-model signals, not hardware measurements or performance results. The standalone telemetry interface also generates simulated values and stores its data locally.
 
-IOF represents a post-von Neumann paradigm where computation occurs at the speed of light through resonant standing waves.
+The repository separates conceptual/cosmological framing, proposed engineering targets, and runnable software models. The cosmological mapping is a design metaphor and research heuristic with open predictions; it is not an observational result or validation of a physical implementation. The smoke script checks a limited v3 Python path only. It does not establish physical-device behavior, deployment security, full React parity, or production readiness.
 
----
+## Software starting points
 
-## 🔬 Core Architecture
-| Component | Metric | Description |
+| Area | Starting point | Description |
 | :--- | :--- | :--- |
-| **32 Vertices** | Field States | Discrete states of the resonance field |
-| **80 Edges** | Info Pathways | Information flow channels within the fabric |
-| **10 Rotation Planes** | 5D Manifold | Hyper-dimensional symmetry controllers |
-| **Golden Ratio (φ)** | Harmonic Timing | Universal timing constant throughout the system |
+| **Topographic ascent** | [`topological_ascent_engine_v3.py`](topological_ascent_engine_v3.py) | A Python model of a bounded, multi-peak quality landscape with a memory bank and decisions such as `ASCENT`, `RECALL`, `SHUNT`, `STABILIZE`, and `HOLD`. It exposes `inject_external` and `emit_state` hooks. |
+| **React visualization** | [`TopographicPeakAscent.jsx`](TopographicPeakAscent.jsx) | A React 18+ component with a topographic display, bounded memory, peak detection, and an ascent reasoner. It needs a React CDN or bundler harness. |
+| **IOF v3 browser core** | [`IOFv3_Core.js`](IOFv3_Core.js) | A modular `FluxEngine`, normalized F/L/U/X state axes, a change buffer, subscriptions, and an optional React component factory. |
+| **Earlier Python engine** | [`topological_ascent_engine_v2.py`](topological_ascent_engine_v2.py) | The prior engine with an injectable monotonic clock, explicit phase frequency, clamped external blend weights, and finite-input validation. |
+| **Shared contract** | [`schema/ascent_decision.schema.json`](schema/ascent_decision.schema.json) | The decision-object schema used to describe topographic-ascent outputs. |
+| **Experimental model patcher** | [`moebius_llama_setup.py`](moebius_llama_setup.py) | A Möbius-Llama layer-replacement experiment that requires PyTorch and Transformers. |
 
----
+The earlier [`TopographicPeakAscent.legacy.jsx`](TopographicPeakAscent.legacy.jsx) is retained for comparison.
 
-## ⊞ Framework Features
-*   **5D Penteract**: Live-rotating hypercube with Möbius phase modulation.
-*   **Jellyfish Mesh**: 5-node biophotonic network (W, X, Y, Z, V) with Kuramoto sync.
-*   **Scale Toggle**: COSMIC / ENGINEERED / BIOLOGICAL / COGNITIVE views.
-*   **Training Metrics**: Loss, grad norm, learning rate, fractal depth.
-*   **Hardware Telemetry**: Resonance, Q-factor, thermal, Vπ, bias.
-*   **ASGA Proposals**: AI-suggested architectural changes with human approval.
+## Further reading
 
----
+- [Unified IOF Overview](docs/Unified_IOF_Overview.md) explains the relationship between the conceptual, engineering, and software layers.
+- [IOF v2 Associative Resonance Research Note](docs/IOF_V2_Associative_Resonance_Research_Note.md) separates hypotheses, baselines, metrics, and hardware-escalation gates.
+- [Cosmological Bridge](docs/CosmologicalBridge.md) presents the conceptual mapping and its stated research questions.
+- [Topological Optimization Logic](docs/TopologicalOptimizationLogic.md) describes the self-healing and state-reversion framing.
+- [Ecosystem Summary](docs/EcosystemSummary.md) provides a wider PegaConstellation overview ([PDF](docs/PegaConstellation_EcosystemSummary.pdf)).
 
-## ⚙️ Engines & Reference Implementations
+## Related projects
 
-| File | Language | Description |
-| :--- | :--- | :--- |
-| [`topological_ascent_engine_v2.py`](topological_ascent_engine_v2.py) | Python | Debugged Ascent Engine v2 — multi-peak φ landscape, memory bank, ASCENT/RECALL/STABILIZE/HOLD reasoner, IOF v3 bus hooks (`inject_external` / `emit_state`). Run `python3 topological_ascent_engine_v2.py` for the smoke test. |
-| [`IOFv3_Core.js`](IOFv3_Core.js) | JavaScript | IOF v3 Station 2 FluxEngine — F/L/U/X spring-damper physics, PalindromeBuffer, resonance metric, pub/sub, optional React dashboard. |
-| [`ForensicDashboard_React.jsx`](ForensicDashboard_React.jsx) | React | **Forensic Dashboard**: A high-fidelity React dashboard for IOF Resonance, featuring real-time telemetry and state visualization. |
-| [`ForensicTelemetry.jsx`](ForensicTelemetry.jsx) | React | **Forensic Telemetry**: A comprehensive telemetry component using Recharts for visualizing signal integrity, latency, and throughput. |
-| [`ForensicTelemetry_Standalone.html`](ForensicTelemetry_Standalone.html) | HTML/React | **Standalone Telemetry Viewer**: A self-contained version of the forensic telemetry dashboard. Open the file directly for a local demo or serve the repository with any static file server. |
-| [`schema.json`](schema.json) | JSON | **Project Schema**: Structured metadata for the Infinite Optical Fabric, following Schema.org standards. |
-| [`moebius_llama_setup.py`](moebius_llama_setup.py) | Python (PyTorch) | Experimental Möbius-Llama patcher — replaces Llama transformer layers with Möbius loop blocks using golden-ratio-scaled backward reflection. Requires `torch` + `transformers`. |
-| [`iof_resonance_production.py`](iof_resonance_production.py) | Python | Production stack scaffolding: CI/CD generators, Prometheus/Grafana configs, cost optimization, auto-scaling. |
-| [`TopographicPeakAscent.jsx`](TopographicPeakAscent.jsx) | React | Photonic dashboard with topographic ascent visualization and peak-detecting memory bank. |
-| [`UnityProtocol_Visualizer.html`](UnityProtocol_Visualizer.html) | HTML/React | **Unity Protocol Visualizer**: A standalone visualization for the Unity/Coexistence protocol, featuring resonant alignment between human and AI pixels. |
-| [`setup.sh`](setup.sh) | Bash | **Master Setup Script**: A comprehensive tool for initializing the entire PegaConstellation ecosystem, including AHR-Endpoint, Möbius-Llama, and Aetherius Nexus. |
+The project documentation identifies these repositories as related work in the wider PegaConstellation context:
 
----
+- [AHR-Endpoint](https://github.com/Immaculate1022/AHR-Endpoint)
+- [IOF-Resonant-Hardware](https://github.com/Immaculate1022/IOF-Resonant-Hardware)
 
-## 📚 Technical & Philosophical Documentation
-*   **[Ecosystem Summary](docs/EcosystemSummary.md)**: High-level overview of the PegaConstellation project, components, and roadmap. ([PDF Version](docs/PegaConstellation_EcosystemSummary.pdf))
-*   **[The Cosmological Bridge](docs/CosmologicalBridge.md)**: Universal topology and the physics of the IOF.
-*   **[Technical Brief: Photonic AI Deployment](docs/TechnicalBrief_PhotonicAI.md)**: TFLN manifolds and Mobius topology.
-*   **[AI Collaboration Case Study](docs/AI_Collaboration_Case_Study.md)**: The human-AI development process.
-*   **[Topological Optimization Logic](docs/TopologicalOptimizationLogic.md)**: Self-healing and state reversion frameworks.
-*   **[Sovereign Reality Engine Whitepaper](docs/SovereignRealityEngine_Whitepaper.md)**: Governance as a physical constant.
-*   **[IOF-Urban Protocol v1.0](docs/UrbanProtocol_v1.md)**: Luminous Grid Mesh — streetlight masts as phase-coherent optical nodes in a city-scale self-healing computing substrate.
-*   **[IOF v3 Gold Build Integration Report](docs/GoldBuild_IntegrationReport.md)**: System evolution from Ascent Engine V2 through Meta-Governor to the Gold Client.
-*   **[3-of-5 Multisig Protocol](docs/MultisigProtocol_3of5.md)**: Human-centric consensus mechanism for decentralized dispute resolution and higher-order governance.
-*   **[State Recovery Design Notes](docs/StateRecovery_DesignNotes.md)**: The memory-recall/confidence-decay rollback mechanism and its application roadmap (finance, swarms, AI orchestration).
-*   **[IOF v2 Associative Resonance Research Note](docs/IOF_V2_Associative_Resonance_Research_Note.md)**: A source-grounded proposal for an associative resonance layer, with explicit hypotheses, baselines, metrics, and hardware escalation gates.
+## Contributing and security
 
----
+Contributions are welcome when they are focused, reproducible, and clear about their assumptions and limitations. Please read [CONTRIBUTING.md](CONTRIBUTING.md), search existing issues, and open an issue before beginning material changes. Suspected vulnerabilities should follow the private-reporting guidance in [SECURITY.md](SECURITY.md), not be disclosed in a public issue.
 
-## 🛠️ Implementations
-The IOF architecture is the foundation for various specialized tools, including:
-*   🛡️ **[AHR-Endpoint](https://github.com/Immaculate1022/AHR-Endpoint)**: A global immune system for ransomware defense.
-*   📡 **[IOF-Resonant-Hardware](https://github.com/Immaculate1022/IOF-Resonant-Hardware)**: Sub-7Hz portable transceiver and resonant hardware.
+## License
 
----
-**IOF Resonance v1.0 · Gregory Scott Davis**  
-*Infinite Optical Fabric*
+This repository is released under the [IOF Attribution License v1.0](LICENSE), copyright © 2026 Gregory Scott Davis. The license permits use, copying, modification, publication, distribution, sublicensing, and deployment for any purpose. Any public use, derivative work, or implementation must include clear attribution to **“Infinite Optical Fabric by Gregory Scott Davis, Princeton, NC.”** The material is provided **“AS IS”**, without warranty.
 
 ## Concept diagram
 
@@ -108,25 +82,7 @@ The IOF architecture is the foundation for various specialized tools, including:
 
 *Figure: conceptual visualization of the IOF Resonance Core, including the proposed 5D penteract network, photonic pathways, φ-weighted coupling, rotation planes, and resonance markers. This is an architecture illustration, not a measured hardware schematic, simulation result, or production-performance claim.*
 
-The diagram is provided as a communication aid for the repository’s research direction. The numerical labels shown in the artwork should be treated as design parameters or conceptual annotations unless a linked experiment provides definitions, units, methods, raw outputs, and reproducible results.
+The diagram is a communication aid for the repository’s research direction. Treat its numerical labels as design parameters or conceptual annotations unless a linked experiment supplies definitions, units, methods, raw outputs, and reproducible results.
 
-## Topographic ascent improvements
-
-The repository now includes a validated research implementation of the topographic-ascent layer:
-
-| Path | Role |
-|---|---|
-| [`TopographicPeakAscent.jsx`](TopographicPeakAscent.jsx) | Self-contained React visualization, bounded memory bank, peak detection, and ascent reasoner. |
-| [`topological_ascent_engine_v3.py`](topological_ascent_engine_v3.py) | Python counterpart with injected-state and emitted-decision hooks. |
-| [`schema/ascent_decision.schema.json`](schema/ascent_decision.schema.json) | Shared decision-object contract for the Python and React layers. |
-| [`tests/test_ascent_engine.py`](tests/test_ascent_engine.py) | Deterministic tests for landscapes, memory, reasoning, and engine output. |
-| [`scripts/smoke_all.sh`](scripts/smoke_all.sh) | One-command syntax, unit, live-smoke, schema, and JSX presence checks. |
-| [`docs/Unified_IOF_Overview.md`](docs/Unified_IOF_Overview.md) | Public framing for the cosmological bridge and engineering/software layers. |
-
-Run the bounded verification path with:
-
-```bash
-bash scripts/smoke_all.sh
-```
-
-The prior visualization is retained as [`TopographicPeakAscent.legacy.jsx`](TopographicPeakAscent.legacy.jsx) for comparison. These components are research and control-policy prototypes; they do not establish physical photonic performance or validate the cosmological mapping.
+**IOF Resonance v1.0 · Gregory Scott Davis**
+*Infinite Optical Fabric*
