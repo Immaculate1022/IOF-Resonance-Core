@@ -86,3 +86,18 @@ The diagram is a communication aid for the repository’s research direction. Tr
 
 **IOF Resonance v1.0 · Gregory Scott Davis**
 *Infinite Optical Fabric*
+
+## Consolidated content (2026-09-20)
+
+This repository is the canonical home for the IOF Resonance Core work. Content consolidated here from the sibling repository [`infinite-optical-fabric-resonance-core`](https://github.com/Immaculate1022/infinite-optical-fabric-resonance-core):
+
+- **`iof/`** — Python package: 5D penteract graph (`hypercube.py`), φ-scaled Kuramoto network (`kuramoto.py`), order-parameter metrics (`metrics.py`)
+- **`examples/`** — runnable topology inspection and resonance demos
+- **`tests/test_core.py`** — 5 tests for the core Python modules
+- **`pyproject.toml` / `requirements.txt`** — Python packaging
+- **`ROADMAP.md`** — project roadmap
+- **`docs/`** — architecture notes, executive framing, materials specification, mathematical formalization, SRE hardware & governance, Weaver's technical primer
+- **`software/react-simulator/`** — React Resonance Simulator (waveform, Möbius, metrics)
+- **`software/topographic-ascent/`** — Topological Peak Ascent / Memory Bank optimizer
+
+The near-duplicate `software/iof-v3` FluxEngine build was intentionally not migrated (this repository's engine files cover the same ground). All consolidated material is released under this repository's [IOF Attribution License v1.0](LICENSE).

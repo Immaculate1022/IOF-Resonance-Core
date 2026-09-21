@@ -1,0 +1,39 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "iof-resonance-core"
+version = "0.1.0"
+description = "Open conceptual photonic computing architecture: 5D Penteract + φ-scaled Kuramoto Resonance Core"
+readme = "README.md"
+requires-python = ">=3.9"
+license = {text = "IOF Attribution License v1.0"}
+authors = [
+  {name = "Gregory Scott Davis (Immaculate1022)"}
+]
+keywords = ["photonic", "kuramoto", "hypercube", "penteract", "golden-ratio", "synchronization", "open-science"]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Intended Audience :: Science/Research",
+  "Programming Language :: Python :: 3",
+  "Topic :: Scientific/Engineering :: Physics",
+]
+dependencies = [
+  "numpy>=1.24",
+  "scipy>=1.10",
+  "networkx>=3.0",
+  "matplotlib>=3.7",
+  "tqdm>=4.65",
+]
+
+[project.urls]
+Homepage = "https://github.com/Immaculate1022/IOF-Resonance-Core"
+Repository = "https://github.com/Immaculate1022/IOF-Resonance-Core"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["iof*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
