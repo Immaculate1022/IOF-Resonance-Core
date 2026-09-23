@@ -50,8 +50,17 @@ The repository separates conceptual/cosmological framing, proposed engineering t
 | **Earlier Python engine** | [`topological_ascent_engine_v2.py`](topological_ascent_engine_v2.py) | The prior engine with an injectable monotonic clock, explicit phase frequency, clamped external blend weights, and finite-input validation. |
 | **Shared contract** | [`schema/ascent_decision.schema.json`](schema/ascent_decision.schema.json) | The decision-object schema used to describe topographic-ascent outputs. |
 | **Experimental model patcher** | [`moebius_llama_setup.py`](moebius_llama_setup.py) | A Möbius-Llama layer-replacement experiment that requires PyTorch and Transformers. |
+| **Symbolic resonance lab** | [`examples/resonance_algebra_lab.py`](examples/resonance_algebra_lab.py) | A self-contained, rule-based symbolic example inspired by the Resonance Math Kernel. It is a literary/experimental transformation demo, not numeric algebra or a physical measurement. |
 
 The earlier [`TopographicPeakAscent.legacy.jsx`](TopographicPeakAscent.legacy.jsx) is retained for comparison.
+
+### Run the symbolic resonance lab
+
+```bash
+python3 examples/resonance_algebra_lab.py
+```
+
+Use `--quiet` for the final state only or `--list-rules` to inspect the installed transformations. The lab is intentionally separate from the validated numerical smoke path above: it demonstrates traceable symbolic rules and ends in the symbolic state `STILL HERE`.
 
 ## Further reading
 
