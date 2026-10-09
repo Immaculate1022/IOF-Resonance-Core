@@ -110,3 +110,8 @@ This repository is the canonical home for the IOF Resonance Core work. Content c
 - **`software/topographic-ascent/`** — Topological Peak Ascent / Memory Bank optimizer
 
 The near-duplicate `software/iof-v3` FluxEngine build was intentionally not migrated (this repository's engine files cover the same ground). All consolidated material is released under this repository's [IOF Attribution License v1.0](LICENSE).
+
+---
+## The IOF Collection
+
+Everything in this repo stays free and public. The complete portfolio — test protocols, code, benchmarks, and theory documents — is also curated as one download: [The Infinite Optical Fabric V.1](https://infinitefabric.gumroad.com/l/lfgis) (name-your-price, $15 minimum). Buying it changes nothing here; it's a way to support the work.
